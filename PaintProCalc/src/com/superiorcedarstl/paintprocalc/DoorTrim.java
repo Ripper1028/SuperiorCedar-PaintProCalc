@@ -3,53 +3,38 @@ package com.superiorcedarstl.paintprocalc;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Door implements Paintable {
-	
+public class DoorTrim implements Paintable {
+
 	private static final String JSON_SIZE = "size";
 	private static final String JSON_ISPAINTABLE = "isPaintable";
 	private static final String JSON_NAME = "name";
 	private static final String JSON_WIDTH = "width";
 	private static final String JSON_HEIGHT = "height";
-	private static final String JSON_CASING = "casing";
-	private static final String JSON_TRIM = "trim";
+	private static final String JSON_TRIM = "trimSize";
 	
 
-	private static final String NAME = "door";
+	private static final String NAME = "door trim";
 	private double size = 0;
 	private boolean isPaintable;
-	private double width, height;
-	private DoorCasing casing;
-	private DoorTrim trim;
+	private double width, height, trimSize;
 	
 	
-	public Door(double width, double height) {
-		this.width = width;
-		this.height = height;
-		this.size = width * height;
+	public DoorTrim(double width, double height, double trimSize) {
+		this.width = width + trimSize + .25;
+		this.height = height + trimSize + .25;
+		this.trimSize = trimSize;
+		setSize(this.width, this.height, this.trimSize);		
 		isPaintable = true;
 	}
 	
-	public Door(JSONObject json) throws JSONException {
+	
+	public DoorTrim(JSONObject json) throws JSONException {
 		width = json.getDouble(JSON_WIDTH);
 		height = json.getDouble(JSON_HEIGHT);
+		trimSize = json.getDouble(JSON_TRIM);
 		size = json.getDouble(JSON_SIZE);
 		isPaintable = json.getBoolean(JSON_ISPAINTABLE);
-		if (json.has(JSON_CASING)) {
-			casing = new DoorCasing(json.getJSONObject(JSON_CASING));
-		}
-		if (json.has(JSON_TRIM)) {
-			trim = new DoorTrim(json.getJSONObject(JSON_TRIM));
-		}
 	}
-	
-	public void setCasing(DoorCasing casing) {
-		this.casing = casing;
-	}
-
-	public void setTrim(DoorTrim trim) {
-		this.trim = trim;
-	}
-
 	
 	public double getWidth() {
 		return width;
@@ -72,9 +57,21 @@ public class Door implements Paintable {
 		return NAME;
 	}
 
+	private void setSize(double width2, double height2, double trimSize2) {
+		this.size = (width + (height * 2)) * trimSize;		
+	}
+
 	@Override
 	public double getSize() {
 		return size;
+	}
+	
+	public void setDepth(double d) {
+		this.trimSize = d;
+	}
+	
+	public double getTrimSize() {
+		return trimSize;
 	}
 
 	@Override
@@ -92,20 +89,15 @@ public class Door implements Paintable {
 		json.put(JSON_NAME, getName());
 		json.put(JSON_WIDTH, getWidth());
 		json.put(JSON_HEIGHT, getHeight());
+		json.put(JSON_TRIM, getTrimSize());
 		json.put(JSON_SIZE, getSize());		
 		json.put(JSON_ISPAINTABLE, isPaintable());
-		if (casing != null) {
-			json.put(JSON_CASING, casing);
-		}
-		if (trim != null) {
-			json.put(JSON_TRIM, trim);
-		}
 		return json;
 	}
+	
 	
 	public String toString() {
 		return NAME;
 	}
-
 
 }

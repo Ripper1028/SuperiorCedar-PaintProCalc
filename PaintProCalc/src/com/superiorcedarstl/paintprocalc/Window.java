@@ -10,12 +10,16 @@ public class Window implements Paintable {
 	private static final String JSON_NAME = "name";
 	private static final String JSON_WIDTH = "width";
 	private static final String JSON_HEIGHT = "height";
+	private static final String JSON_CASING = "casing";
+	private static final String JSON_TRIM = "trim";
 	
 
 	private static final String NAME = "window";
 	private double size = 0;
 	private boolean isPaintable;
 	private double width, height;
+	private WindowCasing casing;
+	private WindowTrim trim;
 	
 	public Window(double width, double height) {
 		this.width = width;
@@ -29,8 +33,30 @@ public class Window implements Paintable {
 		height = json.getDouble(JSON_HEIGHT);
 		size = json.getDouble(JSON_SIZE);
 		isPaintable = json.getBoolean(JSON_ISPAINTABLE);
+		if (json.has(JSON_CASING)) {
+			casing = new WindowCasing(json.getJSONObject(JSON_CASING));
+		}
+		if (json.has(JSON_TRIM)) {
+			trim = new WindowTrim(json.getJSONObject(JSON_TRIM));
+		}
 	}
 	
+	public WindowCasing getCasing() {
+		return casing;
+	}
+
+	public void setCasing(WindowCasing casing) {
+		this.casing = casing;
+	}
+
+	public WindowTrim getTrim() {
+		return trim;
+	}
+
+	public void setTrim(WindowTrim trim) {
+		this.trim = trim;
+	}
+
 	public double getWidth() {
 		return width;
 	}
@@ -74,6 +100,12 @@ public class Window implements Paintable {
 		json.put(JSON_HEIGHT, getHeight());
 		json.put(JSON_SIZE, getSize());		
 		json.put(JSON_ISPAINTABLE, isPaintable());
+		if (trim != null) {
+			json.put(JSON_TRIM, trim);
+		}
+		if (casing != null) {
+			json.put(JSON_CASING, casing);
+		}
 		return json;
 	}
 	

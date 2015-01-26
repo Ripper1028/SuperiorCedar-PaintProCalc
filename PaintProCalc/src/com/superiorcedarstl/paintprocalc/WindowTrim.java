@@ -18,6 +18,7 @@ public class WindowTrim implements Paintable {
 	private boolean isPaintable;
 	private double width, height, trimSize;
 	
+	
 	public WindowTrim(double width, double height, double trimSize) {
 		this.width = width + trimSize + .25;
 		this.height = height + trimSize + .25;
