@@ -20,10 +20,10 @@ public class WindowTrim implements Paintable {
 	
 	
 	public WindowTrim(double width, double height, double trimSize) {
-		this.width = width + trimSize + .25;
-		this.height = height + trimSize + .25;
+		this.width = width + trimSize;
+		this.height = height + trimSize;
 		this.trimSize = trimSize;
-		setSize(this.width, this.height, this.trimSize);		
+		this.size = ((width + height) * 2) * trimSize;
 		isPaintable = true;
 	}
 	
@@ -57,10 +57,7 @@ public class WindowTrim implements Paintable {
 		return NAME;
 	}
 
-	private void setSize(double width2, double height2, double trimSize2) {
-		this.size = ((width + height) * 2) * trimSize;		
-	}
-
+	
 	@Override
 	public double getSize() {
 		return size;
