@@ -3,6 +3,10 @@ package com.superiorcedarstl.paintprocalc;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*
+ * The crown molding will be calculated the same as all the trim, but when taking off the 
+ * area it will have to take half off of the wall and half off of the ceiling             */
+
 public class CrownMolding implements Paintable {
 
 	private static final String JSON_SIZE = "size";

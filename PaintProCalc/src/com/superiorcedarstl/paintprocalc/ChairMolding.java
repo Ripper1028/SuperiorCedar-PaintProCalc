@@ -3,6 +3,11 @@ package com.superiorcedarstl.paintprocalc;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*
+ * Chair molding is the small strip of molding that is found normally in a room with tables
+ * and chairs(Duh) and is about a third of the way up the wall. It is meant to save the walls
+ * from the chairs scaring the plaster/sheet rock                                             */
+
 public class ChairMolding implements Paintable {
 
 	private static final String JSON_SIZE = "size";

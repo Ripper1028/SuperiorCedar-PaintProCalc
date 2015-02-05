@@ -3,6 +3,10 @@ package com.superiorcedarstl.paintprocalc;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*
+ * The window is holds both the casing and the trim. The casing is the piece that fills in the 
+ * gap from window unit out to the trim, and of course the trim is the trim around the unit on the wall.*/
+
 public class Window implements Paintable {
 
 	private static final String JSON_SIZE = "size";

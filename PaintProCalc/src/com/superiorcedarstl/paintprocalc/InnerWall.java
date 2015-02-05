@@ -4,12 +4,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /*
- *  The wall makes up the room, and the dimensions of the room will be used to calculate the ceiling. 
- *  The wall holds the baseboard, chair molding and crown molding because they will be directly 
- *  reflected with the wall length.                                                                  */
+ * Inner wall is any paintable wall that does not add to the perimeter whether it goes up
+ * to the ceiling or is just a half wall dividing parts of the room........................*/
 
-public class Wall implements Paintable {
-	
+
+public class InnerWall implements Paintable {
+
 	private static final String JSON_SIZE = "size";
 	private static final String JSON_NAME = "name";
 	private static final String JSON_LENGTH = "length";
@@ -19,7 +19,7 @@ public class Wall implements Paintable {
 	private static final String JSON_CROWN = "crowm";
 	
 
-	private static final String NAME = "wall";
+	private static final String NAME = "inner wall";
 	private double size = 0;
 	private boolean isPaintable;
 	private double length, height;
@@ -27,14 +27,14 @@ public class Wall implements Paintable {
 	private ChairMolding chairMolding;
 	private CrownMolding crownMolding;
 	
-	public Wall(double length, double height) {
+	public InnerWall(double length, double height) {
 		this.length = length;
 		this.height = height;
 		this.size = length * height;
 		isPaintable = true;
 	}
 	
-	public Wall(JSONObject json) throws JSONException {
+	public InnerWall(JSONObject json) throws JSONException {
 		length = json.getDouble(JSON_LENGTH);
 		height = json.getDouble(JSON_HEIGHT);
 		size = json.getDouble(JSON_SIZE);

@@ -3,6 +3,9 @@ package com.superiorcedarstl.paintprocalc;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*
+ * Window Trim is a dependent of the window, and is calculated based on the size of the window */
+
 public class WindowTrim implements Paintable {
 
 	private static final String JSON_SIZE = "size";
