@@ -6,7 +6,6 @@ import org.json.JSONObject;
 public class DoorCasing implements Paintable {
 
 	private static final String JSON_SIZE = "size";
-	private static final String JSON_ISPAINTABLE = "isPaintable";
 	private static final String JSON_NAME = "name";
 	private static final String JSON_WIDTH = "width";
 	private static final String JSON_HEIGHT = "height";
@@ -31,7 +30,6 @@ public class DoorCasing implements Paintable {
 		height = json.getDouble(JSON_HEIGHT);
 		depth = json.getDouble(JSON_DEPTH);
 		size = json.getDouble(JSON_SIZE);
-		isPaintable = json.getBoolean(JSON_ISPAINTABLE);
 	}
 	
 	public double getWidth() {
@@ -85,7 +83,6 @@ public class DoorCasing implements Paintable {
 		json.put(JSON_HEIGHT, getHeight());
 		json.put(JSON_DEPTH, getDepth());
 		json.put(JSON_SIZE, getSize());		
-		json.put(JSON_ISPAINTABLE, isPaintable());
 		return json;
 	}
 	

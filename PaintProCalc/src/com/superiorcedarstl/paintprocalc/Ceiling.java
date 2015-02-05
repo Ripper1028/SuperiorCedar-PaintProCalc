@@ -6,7 +6,6 @@ import org.json.JSONObject;
 public class Ceiling implements Paintable {
 
 	private static final String JSON_SIZE = "size";
-	private static final String JSON_ISPAINTABLE = "isPaintable";
 	private static final String JSON_NAME = "name";
 	
 
@@ -21,7 +20,6 @@ public class Ceiling implements Paintable {
 	
 	public Ceiling(JSONObject json) throws JSONException {
 		size = json.getDouble(JSON_SIZE);
-		isPaintable = json.getBoolean(JSON_ISPAINTABLE);
 	}
 	
 		
@@ -49,7 +47,6 @@ public class Ceiling implements Paintable {
 		JSONObject json = new JSONObject();
 		json.put(JSON_NAME, getName());
 		json.put(JSON_SIZE, getSize());		
-		json.put(JSON_ISPAINTABLE, isPaintable());
 		return json;
 	}
 	

@@ -6,7 +6,6 @@ import org.json.JSONObject;
 public class Wall implements Paintable {
 	
 	private static final String JSON_SIZE = "size";
-	private static final String JSON_ISPAINTABLE = "isPaintable";
 	private static final String JSON_NAME = "name";
 	private static final String JSON_LENGTH = "length";
 	private static final String JSON_HEIGHT = "height";
@@ -28,7 +27,6 @@ public class Wall implements Paintable {
 		length = json.getDouble(JSON_LENGTH);
 		height = json.getDouble(JSON_HEIGHT);
 		size = json.getDouble(JSON_SIZE);
-		isPaintable = json.getBoolean(JSON_ISPAINTABLE);
 	}
 	
 	public double getLength() {
@@ -73,7 +71,6 @@ public class Wall implements Paintable {
 		json.put(JSON_LENGTH, getLength());
 		json.put(JSON_HEIGHT, getHeight());
 		json.put(JSON_SIZE, getSize());		
-		json.put(JSON_ISPAINTABLE, isPaintable());
 		return json;
 	}
 	
