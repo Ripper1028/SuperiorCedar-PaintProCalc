@@ -3,35 +3,33 @@ package com.superiorcedarstl.paintprocalc;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WindowTrim implements Paintable {
+public class ChairMolding implements Paintable {
 
 	private static final String JSON_SIZE = "size";
 	private static final String JSON_NAME = "name";
 	private static final String JSON_WIDTH = "width";
-	private static final String JSON_HEIGHT = "height";
 	private static final String JSON_TRIM = "trimSize";
 	
 
-	private static final String NAME = "window trim";
+	private static final String NAME = "chair molding";
 	private double size = 0;
 	private boolean isPaintable;
-	private double width, height, trimSize;
+	private double width, trimSize;
 	
 	
-	public WindowTrim(double width, double height, double trimSize) {
-		this.width = width + trimSize;
-		this.height = height + trimSize;
+	public ChairMolding(double width, double trimSize) {
+		this.width = width;
 		this.trimSize = trimSize;
-		this.size = ((this.width + this.height) * 2) * trimSize;
+		this.size = this.width * trimSize;
 		isPaintable = true;
 	}
 	
 	
-	public WindowTrim(JSONObject json) throws JSONException {
+	public ChairMolding(JSONObject json) throws JSONException {
 		width = json.getDouble(JSON_WIDTH);
-		height = json.getDouble(JSON_HEIGHT);
 		trimSize = json.getDouble(JSON_TRIM);
 		size = json.getDouble(JSON_SIZE);
+		isPaintable = true;
 	}
 	
 	public double getWidth() {
@@ -42,13 +40,6 @@ public class WindowTrim implements Paintable {
 		this.width = width;
 	}
 
-	public double getHeight() {
-		return height;
-	}
-
-	public void setHeight(double height) {
-		this.height = height;
-	}
 	
 	@Override
 	public String getName() {
@@ -83,7 +74,6 @@ public class WindowTrim implements Paintable {
 		JSONObject json = new JSONObject();
 		json.put(JSON_NAME, getName());
 		json.put(JSON_WIDTH, getWidth());
-		json.put(JSON_HEIGHT, getHeight());
 		json.put(JSON_TRIM, getTrimSize());
 		json.put(JSON_SIZE, getSize());		
 		return json;
