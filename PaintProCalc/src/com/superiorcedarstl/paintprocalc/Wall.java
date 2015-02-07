@@ -27,6 +27,7 @@ public class Wall implements Paintable {
 	private ChairMolding chairMolding;
 	private CrownMolding crownMolding;
 	
+	
 	public Wall(double length, double height) {
 		this.length = length;
 		this.height = height;
