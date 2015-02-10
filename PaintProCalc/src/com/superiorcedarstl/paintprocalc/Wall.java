@@ -94,13 +94,13 @@ public class Wall implements Paintable {
 		json.put(JSON_HEIGHT, getHeight());
 		json.put(JSON_SIZE, getSize());	
 		if (baseBoard != null) {
-			json.put(JSON_BASE, baseBoard);
+			json.put(JSON_BASE, baseBoard.toJSON());
 		}
 		if (chairMolding != null) {
-			json.put(JSON_CHAIR, chairMolding);
+			json.put(JSON_CHAIR, chairMolding.toJSON());
 		}
 		if (crownMolding != null) {
-			json.put(JSON_CROWN, crownMolding);
+			json.put(JSON_CROWN, crownMolding.toJSON());
 		}
 		return json;
 	}

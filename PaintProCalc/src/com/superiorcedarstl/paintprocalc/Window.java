@@ -102,10 +102,10 @@ public class Window implements Paintable {
 		json.put(JSON_HEIGHT, getHeight());
 		json.put(JSON_SIZE, getSize());		
 		if (trim != null) {
-			json.put(JSON_TRIM, trim);
+			json.put(JSON_TRIM, trim.toJSON());
 		}
 		if (casing != null) {
-			json.put(JSON_CASING, casing);
+			json.put(JSON_CASING, casing.toJSON());
 		}
 		return json;
 	}

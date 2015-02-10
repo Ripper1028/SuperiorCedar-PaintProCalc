@@ -43,9 +43,17 @@ public class Door implements Paintable {
 	public void setCasing(DoorCasing casing) {
 		this.casing = casing;
 	}
+	
+	public DoorCasing getCasing() {
+		return casing;
+	}
 
 	public void setTrim(DoorTrim trim) {
 		this.trim = trim;
+	}
+	
+	public DoorTrim getTrim() {
+		return trim;
 	}
 
 	
@@ -92,10 +100,10 @@ public class Door implements Paintable {
 		json.put(JSON_HEIGHT, getHeight());
 		json.put(JSON_SIZE, getSize());		
 		if (casing != null) {
-			json.put(JSON_CASING, casing);
+			json.put(JSON_CASING, casing.toJSON());
 		}
 		if (trim != null) {
-			json.put(JSON_TRIM, trim);
+			json.put(JSON_TRIM, trim.toJSON());
 		}
 		return json;
 	}
