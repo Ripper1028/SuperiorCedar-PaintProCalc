@@ -16,8 +16,12 @@ public class Room implements Paintable {
 	private static final String JSON_NAME = "name";
 	private static final String JSON_TOTALTRIM = "totalTrim";
 	private static final String JSON_TOTALWALL = "totalWall";
+	private static final String JSON_PERIMETER = "perimeter";
 	
 	private Window window;
+	private Door door;
+	private Wall wall;
+	private InnerWall innerWall;
 	private ArrayList<Paintable> walls;
 	private ArrayList<Paintable> innerWalls;
 	private ArrayList<Paintable> doors;
@@ -59,12 +63,43 @@ public class Room implements Paintable {
 	
 	public Room(JSONObject json) throws JSONException {
 		this.name = json.getString(JSON_NAME);
+		this.totalTrim = json.getDouble(JSON_TOTALTRIM);
+		this.totalWall = json.getDouble(JSON_TOTALWALL);
+		this.perimeter = json.getDouble(JSON_PERIMETER);
+		ceiling = new Ceiling(json.getJSONObject(JSON_CEILING));
 		walls = new ArrayList<Paintable>();
 		innerWalls = new ArrayList<Paintable>();
 		doors = new ArrayList<Paintable>();
 		windows = new ArrayList<Paintable>();
 		getWindows(json.getJSONArray(JSON_WINDOWS));
+		getWalls(json.getJSONArray(JSON_WALLS));
+		getInnerWalls(json.getJSONArray(JSON_INNERWALLS));
+		getDoors(json.getJSONArray(JSON_DOORS));
 	}
+
+	private void getDoors(JSONArray jsonArray) throws JSONException {
+		for (int i = 0; i < jsonArray.length(); i++) {
+			door = new Door(jsonArray.getJSONObject(i));
+		}
+		addDoor(door);
+	}
+
+
+	private void getInnerWalls(JSONArray jsonArray) throws JSONException {
+		for (int i = 0; i < jsonArray.length(); i++) {
+			innerWall = new InnerWall(jsonArray.getJSONObject(i));
+		}
+		addInnerWall(innerWall);
+	}
+
+
+	private void getWalls(JSONArray jsonArray) throws JSONException {
+		for (int i = 0; i < jsonArray.length(); i++) {
+			wall = new Wall(jsonArray.getJSONObject(i));
+		}
+		addWall(wall);
+	}
+
 
 	private void getWindows(JSONArray jsonArray) throws JSONException {
 		
@@ -84,9 +119,10 @@ public class Room implements Paintable {
 		json.put(JSON_DOORS, paintableJSON(doors));
 		json.put(JSON_INNERWALLS, paintableJSON(innerWalls));
 		json.put(JSON_WALLS, paintableJSON(walls));
+		json.put(JSON_WINDOWS, paintableJSON(windows));
 		json.put(JSON_TOTALTRIM, totalTrim);
 		json.put(JSON_TOTALWALL, totalWall);
-		json.put(JSON_WINDOWS, paintableJSON(windows));
+		json.put(JSON_PERIMETER, perimeter);
 		return json;
 	}
 	
